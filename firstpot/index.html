@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Your First Honeypot - CommunityHoneyNetwork</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Your First Honeypot";
+    var mkdocs_page_input_path = "firstpot.md";
+    var mkdocs_page_url = "/firstpot/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-106435025-1', 'CommunityHoneyNetwork.github.io');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> CommunityHoneyNetwork</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">CommunityHoneyNetwork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../quickstart/">QuickStart Guide</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Your First Honeypot</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#deploying-your-first-honeypot">Deploying your First Honeypot</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#prerequisites">Prerequisites</a></li>
+        
+            <li><a class="toctree-l3" href="#building-and-deploying-cowrie">Building and Deploying Cowrie</a></li>
+        
+            <li><a class="toctree-l3" href="#troubleshooting">Troubleshooting</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Advanced Options</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../config/">Advanced Configuration</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../nondocker/">Deploying without Docker</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../kubernetes/">Deploying on Kubernetes</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../cloud/">Deploying to cloud providers</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Honeypots</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../cowrie/">Cowrie</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">CommunityHoneyNetwork</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Your First Honeypot</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/CommunityHoneyNetwork/docs/edit/master/firstpot.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="deploying-your-first-honeypot">Deploying your First Honeypot</h1>
+<p>This example covers how to build and deploy an example <a href="http://www.micheloosterhof.com/cowrie/">Cowrie honeypot</a> and connect it to a running CommunityHoneyNetwork server for collection of data.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>The default deployment model uses Docker and Docker Compose to deploy containers for the project's tools, and so, require the following:</p>
+<ul>
+<li>Docker &gt;= 1.13.1</li>
+<li>Docker Compose &gt;= 1.15.0</li>
+</ul>
+<h2 id="building-and-deploying-cowrie">Building and Deploying Cowrie</h2>
+<p>As an example, we'll deploy Cowrie with SSH listening on port 2222.  This is not likely helpful in a production deployment, but will serve as an example for creating a honeypot, registering a new sensor with the management server, and capturing attack data.  For more details on production deployments, see the full <a href="../cowrie/">Cowrie Documentation</a>.</p>
+<p>Copy the following Docker Compose yaml, and save it as <code>docker-compose.yml</code>:</p>
+<pre><code>version: '2'
+services:
+  cowrie:
+    build:
+      context: https://github.com/CommunityHoneyNetwork/cowrie
+      dockerfile: Dockerfile-centos
+    image: cowrie:centos
+    volumes:
+      - ./cowrie.sysconfig:/etc/sysconfig/cowrie
+      - ./cowrie:/etc/cowrie
+    ports:
+      - &quot;2222:2222&quot;
+</code></pre>
+
+<p>This will tell docker-compose to build the Cowrie container image from the files in the <a href="https://github.com/CommunityHoneyNetwork/cowrie">CommunityHoneyNetwork Cowrie repository</a>, map port 2222 on the host to port 2222 on the container (the default SSH port in the container), and mount two volumes: </p>
+<ul>
+<li>./cowrie as /etc/cowrie - to persist the registration information from the management server</li>
+<li>./cowrie.sysconfig as /etc/sysconfig/cowrie - configuration file for Cowrie (see below)</li>
+</ul>
+<p>Before starting the container, copy the following and save it as <code>cowrie.sysconfig</code>, setting the <code>FEEDS_SERVER</code> to the ip or hostname of the management server the honeypot will be reporting to, and <code>DEPLOY_KEY</code> to the deploy key from the management server.</p>
+<p>If you haven't yet setup a management server, follow the <a href="../quickstart/">Quickstart Guide</a></p>
+<pre><code>#
+# This can be modified to change the default setup of the cowrie unattended installation
+
+DEBUG=false
+
+# Server to stream data to
+FEEDS_SERVER=&lt;IP.OR.NAME.OF.YOUR.CHNSERVER&gt;
+FEEDS_SERVER_PORT=&quot;10000&quot;
+
+# Deploy key from the FEEDS_SERVER administrator
+# This is a REQUIRED value
+DEPLOY_KEY=&lt;YOUR_DEPLOY_KEY&gt;
+
+# Registration information file
+# If running in a container, this needs to persist
+# COWRIE_JSON=&quot;/etc/cowrie.json
+
+# SSH Listen Port
+# Can be set to 22 for deployments on real servers
+# or left at 2222 and have the port mapped if deployed
+# in a container
+SSH_LISTEN_PORT=2222
+</code></pre>
+
+<p>Build the container images for the Cowrie container:</p>
+<pre><code>$ docker-compose build
+</code></pre>
+<p>When the images are built, start the honeypot with:</p>
+<pre><code>$ docker-compose up -d
+</code></pre>
+<p>You can verify the honeypot is running with <code>docker-compose ps</code>:</p>
+<pre><code>$ docker-compose ps
+     Name                    Command              State           Ports         
+--------------------------------------------------------------------------------
+cowrie_centos_1   /sbin/runsvdir -P               Up      0.0.0.0:2222-&gt;2222/tcp
+              /etc/service
+</code></pre>
+<p>When you're ready, the honeypot can be stopped by running <code>docker-compose down</code> from the directory containing the docker-compose.yml file.</p>
+<p>Your new honeypot should show up within the web interface of your management server under the <code>Sensors</code> tab, with the hostname of the container and the UUID that was stored in the cowrie.json file during registration.  As it detects attempts to login to it's fake SSH client, it will send this attack info to the management server.</p>
+<p><img alt="Sensors" src="../img/sensors.png" /></p>
+<p><em>Above: A containerized sensor registered to the managment server</em></p>
+<p>You can now test the honeypot logging by trying to log into the false ssh client running on port 2222:</p>
+<pre><code>$ ssh &lt;ip.of.your.honeypot.host&gt; -P 2222
+</code></pre>
+<p>Attacks logged to your management server will show up under the <code>Attacks</code> section in the web interface.</p>
+<p><img alt="Attacks" src="../img/attacks.png" /></p>
+<p><em>Above: The Attack Report page of the managment server, showing a logged hit to the Cowrie honeypot</em></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ol>
+<li>If cowrie is unable to register with the management server, make sure your host can communitcate with the management server on port 80 (check host and network firewall rules, etc).</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../config/" class="btn btn-neutral float-right" title="Advanced Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../quickstart/" class="btn btn-neutral" title="QuickStart Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/CommunityHoneyNetwork/docs" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../quickstart/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../config/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>
